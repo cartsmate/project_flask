@@ -1,0 +1,76 @@
+{% extends 'navbar.html' %}
+
+{% block title %}Add New Pub{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/latlng_avg.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/show_map.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/add_markers.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/add_listen_click.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/map_listen_click.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/map_listen_bounds.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/listen_events.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/listen_search.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/class_event_handler.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/mouse_down_click.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/insert_line.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/populate_form.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/sum_score.js') }}"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{google_key}}&libraries=places&callback=initMap" type="text/javascript"></script>
+
+<script>
+function onLoad(){
+    console.log("onLoad in add pub");
+    pub_review = {{ pub_review | tojson }}
+    pub_fields = {{ pub_fields | tojson }}
+    review_fields = {{ review_fields | tojson }}
+    pub_review_fields = {{ pub_review_fields | tojson }}
+    input_controls = {{ input_controls | tojson }}
+    dropdown_controls = {{ dropdown_controls | tojson }}
+    slider_controls = {{ slider_controls | tojson }}
+    score_list = {{ score_list | tojson }}
+    form = {{ form | tojson }}
+    populate_form(form)
+}
+
+function initMap(){
+    pubs_reviews = {{ pubs_reviews | tojson }}
+    stations = {{ stations | tojson }}
+    key = {{ google_key | tojson }}
+    let { avg_lat, avg_lng } = latlng_avg(pubs_reviews);
+    map = show_map(avg_lat, avg_lng, 15)
+    add_markers(map, "venue", pubs_reviews)
+    var class_event_handler = new ClickEventHandler(map, origin, key, stations);
+    const input = document.getElementById("search-input-navbar");
+    const searchBox = new google.maps.places.SearchBox(input);
+    map_listen_click(map, stations)
+    listen_search(map, searchBox);
+    map_listen_bounds(searchBox, stations);
+    function isIconMouseEvent(e) {
+        console.log("place icon clicked")
+        return "placeId" in e;
+    }
+}
+
+</script>
+{% endblock %}
+
+{% block full_screen %}<div id="map" style="width:100%; height:400px;"></div>{% endblock %}
+
+{% block form %}
+<form action="{{ url_for('pub', pub_id=pub_review[0]['pub_identity']) }}" method="post">
+    {% include "pub_form.html" %}
+    <div class="form-group row" style="margin: 15px 0;">
+        <button id="submit" type="submit" class="btn btn-primary btn-block" name="submit" value="submit" disabled>Submit</button>
+    </div>
+</form>
+{% endblock %}
+
+{% block pub_add_btn %}<a class="nav-link active_custom" href="{{ url_for('pub_add') }}">Add New Venue</a>{% endblock %}
+{% block pub_read_btn %}{% endblock %}
+{% block pub_edit_btn %}{% endblock %}
+{% block pub_del_btn %}{% endblock %}
+{% block rev_read_btn %}{% endblock %}
+{% block rev_add_btn %}{% endblock %}
+{% block rev_edit_btn %}{% endblock %}
+{% block rev_del_btn %}{% endblock %}
