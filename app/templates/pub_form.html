@@ -1,0 +1,21 @@
+<div class="form-group row">
+    <div class="col" id="pub_vis"></div>
+</div>
+<button type="button" class="btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#review_collapse" ><Edit></Edit> Review</button>
+<div class="form-group row collapse" id="review_collapse">
+    <div class="col" id="rev_vis"></div>
+</div>
+{% for field in pub_fields %}
+    {% if field in pub_visible %}
+        <script>insert_line('pub_vis', '{{form}}', '{{field}}', 'text', '{{list_required}}', '{{input_controls}}', '{{dropdown_controls}}', '{{slider_controls}}')</script>
+    {% else %}
+        <script>insert_line('pub_vis', '{{form}}', '{{field}}', 'hidden', '{{list_required}}', '{{input_controls}}', '{{dropdown_controls}}', '{{slider_controls}}')</script>
+    {% endif %}
+{% endfor %}
+{% for field in review_fields %}
+    {% if field in review_visible %}
+        <script>insert_line('rev_vis', '{{form}}', '{{field}}', 'text', '{{list_required}}', '{{input_controls}}', '{{dropdown_controls}}', '{{slider_controls}}')</script>
+    {% else %}
+        <script>insert_line('rev_vis', '{{form}}', '{{field}}', 'hidden', '{{list_required}}', '{{input_controls}}', '{{dropdown_controls}}', '{{slider_controls}}')</script>
+    {% endif %}
+{% endfor %}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='bootstrap/css/bootstrap.min.css') }}">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+        <script type="text/javascript" src="{{ url_for('static', filename='jquery/jquery-3.6.3.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/bootstrap.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.5/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        {% block script %}{% endblock %}
+    </head>
+    <body onload="onLoad()">
+        <div class="container-fluid" style="background-color:#CDCDCD;">
+            <div class="row header_band" id="header_band"><a class="mx-auto">The Pub Crawls</a></div>
+            <div class="row" style="padding: 15px 15px;">{% block navbar %}{% endblock %}</div>
+            <div class="row" style="margin: 0 0 15px 5px">{% block slider %}{% endblock %}</div>
+            <div class="row" style="padding: 0 15px;">{% block full_screen %}{% endblock %}</div>
+            <div class="row" style="padding: 15px 15px;">
+                <div class="col-md-6">{% block form %}{% endblock %}</div>
+                <div class="col-md-6">{% block image %}{% endblock %}</div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script>
+    document.getElementById("header_band").style = "font-size: 46px; font-weight: bold; font-family:Papyrus; color: white; padding: 15px 0; text-align: bottom;"
+</script>
