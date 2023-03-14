@@ -1,5 +1,5 @@
 from flask import render_template
-from project import app
+from app import app
 
 
 @app.route('/edit')
