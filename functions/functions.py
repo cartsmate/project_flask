@@ -2,9 +2,11 @@ import io
 import os
 import json
 import boto3
+import uuid
 import pandas as pd
 import numpy as np
 from config import Configurations
+
 config = Configurations().get_config()
 
 
@@ -22,7 +24,7 @@ class Functions:
 
     def get_pubs(self):
         df_pubs = self.get_records(config['aws_prefix_pub'],
-                                   json.loads(config['columns_pub']))
+                                   json.loads(config['model_pub']))
         return df_pubs
 
     def get_pubs_station(self):
@@ -50,12 +52,12 @@ class Functions:
 
     def get_reviews(self):
         df_reviews = self.get_records(config['aws_prefix_review'],
-                                      json.loads(config['columns_review']))
+                                      json.loads(config['model_review']))
         return df_reviews
 
     def get_stations(self):
         df_stations = self.get_records(config['aws_prefix_station'],
-                                       json.loads(config['columns_station']))
+                                       json.loads(config['model_station']))
         return df_stations
 
     def get_pubs_reviews(self):
@@ -85,12 +87,12 @@ class Functions:
         return df_pub_station
 
     def get_pub(self, id_code):
-        df_pub = self.get_record(self.get_records(config['aws_prefix_pub'], json.loads(config['columns_pub'])), id_code)
+        df_pub = self.get_record(self.get_records(config['aws_prefix_pub'], json.loads(config['model_pub'])), id_code)
         return df_pub
 
     def get_review(self, pub_id):
         df_reviews = self.get_records(config['aws_prefix_review'],
-                                      json.loads(config['columns_review']))
+                                      json.loads(config['model_review']))
         df_review = df_reviews.loc[df_reviews['pub_identity'] == pub_id]
         return df_review
 

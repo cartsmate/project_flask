@@ -3,18 +3,18 @@
 {% block title %}Pub Details{% endblock %}
 
 {% block script %}
-<script type="text/javascript" src="{{ url_for('static', filename='js/show_map.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/add_markers.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/map_listen_click.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/map_listen_bounds.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/listen_events.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/listen_search.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/class_event_handler.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/mouse_down_click.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/insert_line.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/populate_form.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/sum_score.js') }}"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key={{google_key}}&libraries=places&callback=initMap" type="text/javascript"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/show_map.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/add_markers.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/map_listen_click.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/map_listen_bounds.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/listen_events.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/listen_search.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/class_event_handler.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/mouse_down_click.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/insert_line.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/populate_form.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/sum_score.js') }}"></script>
+<script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key={{google_key}}&libraries=places&callback=initMap"></script>
 <script>
 function onLoad(){
     console.log("onLoad in pub_read");
@@ -52,7 +52,7 @@ function initMap(){
     {% include "pub_form.html" %}
 {% endblock %}
 
-{% block pub_read_btn %}<a class="nav-link active_custom" href="{{ url_for('pub', pub_id=pub_review[0]['pub_identity']) }}">View</a>{% endblock %}</li>
+{% block pub_read_btn %}<a class="nav-link active_custom" href="{{ url_for('pub_read', pub_id=pub_review[0]['pub_identity']) }}">View</a>{% endblock %}</li>
 {% block rev_read_btn %}{% endblock %}
 {% block rev_add_btn %}{% endblock %}
 {% block rev_edit_btn %}{% endblock %}

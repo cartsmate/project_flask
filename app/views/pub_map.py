@@ -1,6 +1,6 @@
 import json
 import pandas as pd
-from flask import render_template
+from flask import render_template, url_for
 from app import app
 from config import Configurations
 from functions.functions import Functions
