@@ -4,11 +4,10 @@
 
 {% block script %}
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{google_key}}&libraries=marker&callback=initMap" type="text/javascript"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/latlng_avg.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/show_map.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/add_markers.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='js/add_listen_click.js') }}"></script>
-<!--<script type="text/javascript" src="{{ url_for('static', filename='js/listen_zoom.js') }}"></script>-->
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/latlng_avg.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/show_map.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/add_markers.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='javascript/add_listen_click.js') }}"></script>
 
 <script>
 function listen_zoom(map, pubs_reviews, stations, map_lat, map_lng) {
