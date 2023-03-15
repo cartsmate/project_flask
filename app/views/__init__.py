@@ -1,7 +1,10 @@
-from .views_add import add
-from .views_edit import edit
 from .index import index
 from .pub_map import map_stations
+from .pub_list import pub_list
 from .pub_add import pub_add
-
-
+from .pub_read import pub_read
+from .pub_edit import pub_edit
+from .pub_delete import pub_delete
+from .pub_by_category import pub_by_category
+from .pub_by_location import pub_by_location
+from .pub_by_star import pub_by_star

@@ -63,6 +63,7 @@ function add_markers(map, view, data) {
             google.maps.event.addListener(marker, 'click', (function (marker, key) {
                 return function () {
                     set=data[key].station.trim().replace(/%20/g, " ");
+                    set.toLowerCase();
                     console.log(data[key].station)
                     console.log(set)
                     infowindow.x = set;

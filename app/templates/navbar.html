@@ -17,7 +17,7 @@
         <li class="nav-item">   {% block pub_add_btn %}
             <a class="nav-link" href="{{ url_for('pub_add') }}">Add New</a>{% endblock %}</li>
         <li class="nav-item">   {% block pub_read_btn %}
-            <a class="nav-link" href="{{ url_for('pub', pub_id=pub_review[0]['pub_identity']) }}">View</a>{% endblock %}</li>
+            <a class="nav-link" href="{{ url_for('pub_read', pub_id=pub_review[0]['pub_identity']) }}">View</a>{% endblock %}</li>
         <li class="nav-item">   {% block pub_edit_btn %}
             <a class="nav-link" href="{{ url_for('pub_edit', pub_id=pub_review[0]['pub_identity']) }}">Edit</a>{% endblock %}</li>
         <li class="nav-item">   {% block pub_del_btn %}
