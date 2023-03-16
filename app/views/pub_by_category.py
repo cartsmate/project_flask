@@ -13,4 +13,5 @@ def pub_by_category(cat_id):
     df_pubs_by_category = function.get_pubs_by_category(cat_id)
     pubs_rev_cat_json = function.df_to_dict(df_pubs_by_category)
     view = "category"
-    return render_template('pub_list.html', pubs_reviews=pubs_rev_cat_json, map_view=view, map_lat=51.5, map_lng=-0.1)
+    return render_template('pub_list.html', pubs_reviews=pubs_rev_cat_json, filter=cat_id, map_view=view, 
+                           map_lat=51.5, map_lng=-0.1)

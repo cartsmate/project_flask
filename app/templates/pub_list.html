@@ -9,12 +9,10 @@
 <script>
 function onLoad(){
     console.log("onLoad in pub_list");
+
     var map_lat = {{ map_lat | tojson }}
     var map_lng = {{ map_lng | tojson }}
     var map_view = {{ map_view | tojson }}
-    //console.log('map_lat: ' + map_lat)
-    //console.log('map_lng: ' + map_lng)
-    //console.log('map_view: ' + map_view)
     pubs_reviews = {{ pubs_reviews | tojson }};
     switch(map_view) {
         case 'list':
@@ -41,7 +39,8 @@ function onLoad(){
 }
 
 function Station() {
-    document.getElementById("table-pubs-json").innerHTML = create_table(pubs_reviews)
+    var filter = {{ filter | tojson }}
+    document.getElementById("table-pubs-json").innerHTML = create_table(filter, pubs_reviews)
     $(document).ready(function () {
         $('#pub_list').DataTable({
             order: [[5, 'desc']],
@@ -55,7 +54,8 @@ function Station() {
 }
 
 function Type() {
-    document.getElementById("table-pubs-json").innerHTML = create_table(pubs_reviews)
+    var filter = {{ filter | tojson }}
+    document.getElementById("table-pubs-json").innerHTML = create_table(filter, pubs_reviews)
     $(document).ready(function () {
         $('#pub_list').DataTable({
             order: [[5, 'desc']],
@@ -69,7 +69,8 @@ function Type() {
 }
 
 function Star() {
-    document.getElementById("table-pubs-json").innerHTML = create_table(pubs_reviews)
+    var filter = {{ filter | tojson }}
+    document.getElementById("table-pubs-json").innerHTML = create_table(filter, pubs_reviews)
     $(document).ready(function () {
         $('#pub_list').DataTable({
             order: [[5, 'desc']],
@@ -105,15 +106,11 @@ function Reset() {
             <input type="radio" class="form-check-input" name="optradio" id="star" value="3" onclick="Star()";>Star Quality
         </label>
     </div>
-    <div class="form-check-inline">
-        <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="optradio" id="reset" value="4" onclick="Reset()";>Reset
-        </label>
-    </div>
 {% endblock %}
 
 {% block full_screen %}
 <div style="overflow-x:scroll">
+    <div id="listings"></div>
     <div id="table-pubs-json" style="background-color:white;" >
     </div>
 </div>
